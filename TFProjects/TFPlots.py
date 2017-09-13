@@ -2,7 +2,7 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
 
-mpl.rc('font',family='Times New Roman',size = 25)
+mpl.rc('font',family='Times New Roman',size = 12)
 mpl.rcParams['xtick.major.size'] = 5
 mpl.rcParams['xtick.minor.size'] = 2
 mpl.rcParams['ytick.major.size'] = 5
@@ -19,7 +19,7 @@ class MnistImagePlot:
         self.__img_width = width
         self.__img_shape = (height, width)
 
-    def plotImage(self, r, c, imgs, cls, cls_pred = None):
+    def plotImage(self, r, c, imgs, cls, cls_pred = None, file_name = None):
         '''
         Plot images in an rXc grid
         :param r: number of rows
@@ -27,6 +27,7 @@ class MnistImagePlot:
         :param imgs: image array
         :param cls: true value
         :param cls_pred: predicted classifications
+        :param file_name: to which the figure will be saved
         :return: None
         '''
         assert len(imgs) == len(cls) == r * c
@@ -41,7 +42,7 @@ class MnistImagePlot:
             ax.imshow(imgs[i].reshape(self.__img_shape), cmap = 'binary')
 
             # Show Labels
-            if cls_pred == None:
+            if cls_pred is None:
                 xlabel = "True: {0}".format(cls[i])
             else:
                 xlabel = "True: {0}, Pred: {1}".format(cls[i], cls_pred[i])
@@ -50,18 +51,22 @@ class MnistImagePlot:
             # Remove ticks from the images
             ax.set_xticks([])
             ax.set_yticks([])
-        plt.show()
+        if file_name is None:
+            plt.show()
+        else:
+            plt.savefig(file_name, bbox_inches = 'tight', pad_inches = 0.3)
 
         return
 
 
-    def plotWeights(self, wghts, r = 2, c = 5):
+    def plotWeights(self, wghts, r = 2, c = 5, file_name = None):
         '''
         Plot weight as images in an r X c grid
         Only for linear model
         :param wghts: weights
         :param r: number of rows
         :param c: number of columns
+        :param file_name: to which the figure will be saved
         :return: None
         '''
 
@@ -91,5 +96,31 @@ class MnistImagePlot:
             # Remove tick marks
             ax.set_xticks([])
             ax.set_yticks([])
+
+        if file_name is None:
+            plt.show()
+        else:
+            plt.savefig(file_name, bbox_inches = 'tight', pad_inches = 0.3)
+
+        return
+
+    def plotCost(self, t_list, l_list, xlabel = "Nstep", ylabel = "Cost", file_name = None):
+        '''
+        Plot Cost/Lost function
+        :param t_list: Nstep
+        :param l_list: Cost/Lost function
+        :param xlabel: xlabel
+        :param ylabel: ylabel
+        :param file_name: to which the figure will be saved
+        :return: None
+        '''
+        fig, ax = plt.subplots(1,1)
+        ax.plot(t_list, l_list, '-o', lw = 1., markersize = 2)
+        ax.set_xlabel(xlabel)
+        ax.set_ylabel(ylabel)
+        if file_name is None:
+            plt.show()
+        else:
+            plt.savefig(file_name, bbox_inches = 'tight', pad_inches = 0.3)
 
         return
