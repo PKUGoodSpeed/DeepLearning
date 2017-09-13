@@ -1,0 +1,20 @@
+# Various
+sandbox*.py
+
+# Data for TensorFlow
+data/
+inception/
+vgg16/
+checkpoints/
+checkpoints*
+logs/
+summary/
+
+# PyCharm
+.idea/
+
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
