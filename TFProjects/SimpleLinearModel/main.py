@@ -28,7 +28,7 @@ num_classes = len(train_set.labels[0])
 
 if __name__ == '__main__':
     mnist_plot = TFPlots.MnistImagePlot(height = img_size, width = img_size)
-    linear_train_model = LinearModel.LinearModel(img_size_flat, num_classes, l_rate = 0.5, opt_type = 'GradDesc')
+    linear_train_model = LinearModel.LinearModel(img_size_flat, num_classes, l_rate = 1.e-1, opt_type = 'AdGrad')
     linear_train_model.initialization()
 
     ### Show images before training

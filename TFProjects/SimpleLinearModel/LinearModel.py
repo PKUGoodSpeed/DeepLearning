@@ -1,3 +1,6 @@
+'''
+The modifyLearningRate method do not suitable for the 'Adam' and 'AdGrad' optimizers.
+'''
 import numpy as np
 import tensorflow as tf
 
@@ -10,6 +13,8 @@ class LinearModel:
 
     __optimizer_list = {
         'GradDesc' : tf.train.GradientDescentOptimizer,
+        'Adam' : tf.train.AdamOptimizer,
+        'AdGrad' : tf.train.AdagradOptimizer,
     }
 
     def __init__(self, x_dim, y_dim, l_rate = 0.5, opt_type = 'GradDesc'):
