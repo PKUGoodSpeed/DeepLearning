@@ -7,7 +7,7 @@ import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
 raw_data = input_data.read_data_sets("../data/MNIST/", one_hot = True)
 import TFPlots
-from SimpleLinearModel import LinearModel
+import LinearModel
 
 '''Prepare training and testing data'''
 print("Size of:")
