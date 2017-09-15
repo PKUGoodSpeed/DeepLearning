@@ -71,7 +71,8 @@ if __name__ == '__main__':
     lower = 1.e-6
     upper = 1.e-1
     ratio = 2.
-    sele_number = 1000
+    sele_number = 100
+    print("Shaocong!")
     l_rate_list, accu_list = selectLearningRate(lower, upper, ratio, sele_number)
     for i, l_rate in enumerate(l_rate_list):
         print(i, "{0}, Training Accuracy: {1:>6.1%}".format(l_rate, accu_list[i]))
