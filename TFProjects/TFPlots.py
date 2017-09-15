@@ -104,7 +104,8 @@ class MnistImagePlot:
 
         return
 
-    def plotCost(self, t_list, l_list, xlabel = "Nstep", ylabel = "Cost", file_name = None):
+    def plotCost(self, t_list, l_list, xscale = 'linear', yscale = 'linear',
+                 xlabel = "Nstep", ylabel = "Cost", file_name = None):
         '''
         Plot Cost/Lost function
         :param t_list: Nstep
@@ -118,6 +119,8 @@ class MnistImagePlot:
         ax.plot(t_list, l_list, '-o', lw = 1., markersize = 2)
         ax.set_xlabel(xlabel)
         ax.set_ylabel(ylabel)
+        ax.set_xscale(xscale)
+        ax.set_yscale(yscale)
         if file_name is None:
             plt.show()
         else:
