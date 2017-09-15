@@ -44,7 +44,7 @@ def selectLearningRate(lower, upper, ratio, N_step):
     The method to check Learning rate
     :param lower: lower_bound
     :param upper: upper_bound
-    :param ratio: retio
+    :param ratio: ratio
     :param N_step: number of steps for the iteration
     :return: None
     '''
@@ -61,6 +61,7 @@ def selectLearningRate(lower, upper, ratio, N_step):
         l_rate_list.append(l_rate)
         accuracy = CNN_model.getTestAccuracy(test_set)
         accu_list.append(accuracy)
+        l_rate *= ratio
     mnist_plot.plotCost(l_rate_list, accu_list, xscale = 'log', xlabel = 'Learning rate',
                         ylabel = 'Temp Accuracy', file_name = 'lrate_vs_accu.pdf')
     return l_rate_list, accu_list
