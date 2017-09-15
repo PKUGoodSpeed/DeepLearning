@@ -220,9 +220,9 @@ class TwoConvCNN:
         :param test_data: test data set
         :return: accuracy for the test set, prediction for the test set
         '''
-        batch_size = 256
+        batch_size = 128
         num_test_example = len(test_data.labels)
-        cls_pred = np.zeros(shape = num_test_example, dtype = np.int)
+        num_correct = 0
         i = 0
         while i < num_test_example:
             j = min(i+batch_size, num_test_example)
@@ -230,11 +230,11 @@ class TwoConvCNN:
                 self.x: test_data.images[i: j],
                 self.y: test_data.labels[i: j],
             }
-            cls_pred[i: j] = self.session.run(self.y_cls_pred, feed_dict = test_set)
+            cls_pred = self.session.run(self.y_cls_pred, feed_dict = test_set)
+            num_correct += (cls_pred == test_data.cls[i: j]).sum()
             i = j
 
-        correct = (cls_pred == test_data.cls)
-        return 1.*correct.sum()/num_test_example, cls_pred
+        return 1.*num_correct/num_test_example
 
 
 

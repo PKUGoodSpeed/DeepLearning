@@ -7,7 +7,7 @@ import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
 raw_data = input_data.read_data_sets("../data/MNIST/", one_hot = True)
 import TFPlots
-from CNN import TwoConvCNN
+import TwoConvCNN
 
 '''Prepare training and testing data'''
 print("Size of:")
@@ -59,7 +59,7 @@ def selectLearningRate(lower, upper, ratio, N_step):
         CNN_model.initialization(l_rate, opt_type = 'Adam')
         CNN_model.training(train_set, N_step, 64)
         l_rate_list.append(l_rate)
-        accuracy, = CNN_model.getTestAccuracy(test_set)
+        accuracy = CNN_model.getTestAccuracy(test_set)
         accu_list.append(accuracy)
     mnist_plot.plotCost(l_rate_list, accu_list, xscale = 'log', xlabel = 'Learning rate',
                         ylabel = 'Temp Accuracy', file_name = 'lrate_vs_accu.pdf')
