@@ -227,7 +227,6 @@ class MultiConvLayerCNN:
         :return: None
         '''
         start_time = time.time()
-        print(num_iterations)
         for i in range(num_iterations):
 
             # Get training set

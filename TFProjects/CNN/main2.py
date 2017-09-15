@@ -46,7 +46,7 @@ if __name__ == '__main__':
     lower = 1.e-5
     upper = 2.e-3
     ratio = 2.
-    n_step = 201
+    n_step = 1001
     lrate_list, accu_list = test_model.checkLearningRate(train_set, test_set, lower, upper, ratio, n_step)
     mnist_plot.plotCost(lrate_list, accu_list, xscale = 'log', xlabel = 'Learning rate',
                         ylabel = 'Test accuracy', file_name = 'main2_results/lr_vs_accu1.pdf')
