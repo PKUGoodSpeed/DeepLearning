@@ -63,48 +63,39 @@ def selectLearningRate(lower, upper, ratio, N_step):
         accu_list.append(accuracy)
         l_rate *= ratio
     mnist_plot.plotCost(l_rate_list, accu_list, xscale = 'log', xlabel = 'Learning rate',
-                        ylabel = 'Temp Accuracy', file_name = 'lrate_vs_accu.pdf')
+                        ylabel = 'Temp Accuracy', file_name = 'main_results/lrate_vs_accu3.pdf')
     return l_rate_list, accu_list
 
 
 if __name__ == '__main__':
-    lower = 1.e-6
-    upper = 1.e-1
-    ratio = 2.
-    sele_number = 100
-    print("Shaocong!")
+    '''
+    # This is the Adjusting part
+    lower = 1.e-4
+    upper = 4.e-4
+    ratio = 1.05
+    sele_number = 1500
     l_rate_list, accu_list = selectLearningRate(lower, upper, ratio, sele_number)
     for i, l_rate in enumerate(l_rate_list):
         print(i, "{0}, Training Accuracy: {1:>6.1%}".format(l_rate, accu_list[i]))
-
+    '''
+    
     mnist_plot = TFPlots.MnistImagePlot(height=img_size, width=img_size)
     CNN_model = TwoConvCNN.TwoConvCNN([img_size, img_size, img_channel], num_classes)
     CNN_model.constructModel(conv_shape1, conv_shape2, fc_shape1, fc_shape2)
-
-
-
-
-
-
-
-
-    """
-    CNN_model.initialization(l_rate = 1.e-4, opt_type = 'Adam')
-
+    CNN_model.initialization(l_rate = 2.e-4, opt_type = 'Adam')
     ### Show images before training
     r = 3
     c = 4
     imgs = test_set.images[0: r * c]
     cls = test_set.cls[0: r*c]
-    mnist_plot.plotImage(r, c, imgs, cls, file_name = 'initial.pdf')
+    mnist_plot.plotImage(r, c, imgs, cls, file_name = 'main_results/initial.pdf')
     print('Generate Initial Figure: DONE!')
 
-    CNN_model.training(train_set, num_iterations = 51, batch_size = 64)
+    CNN_model.training(train_set, num_iterations = 20001, batch_size = 64)
     t_list, accu_list, cost_list = CNN_model.getTrainingResults()
-    mnist_plot.plotCost(t_list, accu_list, ylabel = 'accuracy')
-    mnist_plot.plotCost(t_list, cost_list)
+    mnist_plot.plotCost(t_list, accu_list, ylabel = 'accuracy', file_name = 'main_results/accuracy.pdf')
+    mnist_plot.plotCost(t_list, cost_list, file_name = 'main_results/cost.pdf')
 
-    accuracy, cls_pred = CNN_model.getTestAccuracy(test_set)
-    mnist_plot.plotImage(r, c, imgs, cls, cls_pred = cls_pred[0: r*c])
-    print("Generate Final Figure: DONE")
-    """
+    accuracy = CNN_model.getTestAccuracy(test_set)
+    mnist_plot.plotImage(r, c, imgs, cls, cls_pred = cls_pred[0: r*c], )
+    print("Final Testing Accuracy: {0:>6.2%}".format(accuracy))
