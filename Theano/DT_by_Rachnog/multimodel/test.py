@@ -1,3 +1,6 @@
+import sys
+sys.path.append('../csv_data')
+
 from process_data import *
 
 from keras.models import Sequential

@@ -1,3 +1,7 @@
+import sys
+sys.path.append('../csv_data')
+
+
 import pandas as pd
 from pandas import Series,DataFrame
 import numpy as np
