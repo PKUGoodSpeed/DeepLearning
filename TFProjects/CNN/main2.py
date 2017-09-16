@@ -71,5 +71,5 @@ if __name__ == '__main__':
     imgs = test_set.images[: r*c]
     cls = test_set.cls[: r*c]
     test_accu, cls_pred = running_model.getTestAccuracy(test_set, n_cls_pred = r*c)
-    print("The Final Accuracy is {0>6.2%}".format(test_accu))
+    print("The Final Accuracy is {0:>6.2%}".format(test_accu))
     mnist_plot.plotImage(r, c, imgs, cls, cls_pred = cls_pred, file_name = 'final_prediction_example.pdf')

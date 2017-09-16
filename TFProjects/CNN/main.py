@@ -82,7 +82,7 @@ if __name__ == '__main__':
     mnist_plot = TFPlots.MnistImagePlot(height=img_size, width=img_size)
     CNN_model = TwoConvCNN.TwoConvCNN([img_size, img_size, img_channel], num_classes)
     CNN_model.constructModel(conv_shape1, conv_shape2, fc_shape1, fc_shape2)
-    CNN_model.initialization(l_rate = 1.e-4, opt_type = 'Adam')
+    CNN_model.initialization(l_rate = 6.e-5, opt_type = 'Adam')
     ### Show images before training
     r = 3
     c = 4
@@ -91,11 +91,11 @@ if __name__ == '__main__':
     mnist_plot.plotImage(r, c, imgs, cls, file_name = 'main_results/initial.pdf')
     print('Generate Initial Figure: DONE!')
 
-    CNN_model.training(train_set, num_iterations = 20001, batch_size = 64)
+    CNN_model.training(train_set, num_iterations = 10001, batch_size = 64)
     t_list, accu_list, cost_list = CNN_model.getTrainingResults()
     mnist_plot.plotCost(t_list, accu_list, ylabel = 'accuracy', file_name = 'main_results/accuracy.pdf')
     mnist_plot.plotCost(t_list, cost_list, file_name = 'main_results/cost.pdf')
 
     accuracy = CNN_model.getTestAccuracy(test_set)
-    mnist_plot.plotImage(r, c, imgs, cls, cls_pred = cls_pred[0: r*c], )
+    mnist_plot.plotImage(r, c, imgs, cls)
     print("Final Testing Accuracy: {0:>6.2%}".format(accuracy))
