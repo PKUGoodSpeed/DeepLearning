@@ -82,7 +82,7 @@ if __name__ == '__main__':
     mnist_plot = TFPlots.MnistImagePlot(height=img_size, width=img_size)
     CNN_model = TwoConvCNN.TwoConvCNN([img_size, img_size, img_channel], num_classes)
     CNN_model.constructModel(conv_shape1, conv_shape2, fc_shape1, fc_shape2)
-    CNN_model.initialization(l_rate = 2.e-4, opt_type = 'Adam')
+    CNN_model.initialization(l_rate = 1.e-4, opt_type = 'Adam')
     ### Show images before training
     r = 3
     c = 4
