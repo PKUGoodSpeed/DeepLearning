@@ -1,6 +1,6 @@
 taidl: review:: Recent Advances in Recurrent Neural Networks
 
-Introduction to RNN:
+Introduction to RNN:https://arxiv.org/pdf/1801.01078.pdf
 
 - Model Architecture:
 ![RNN architecture](https://d2mxuefqeaa7sj.cloudfront.net/s_BCBAB4FA40B3313B1FDDA83625EC1F826E4707EEB7803C4900E6C06BE3B33C1D_1517341325557_Screen+Shot+2018-01-30+at+11.40.49+AM.png)
